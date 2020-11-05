@@ -112,6 +112,7 @@ namespace RdcMan
 		MenuStrip IMainForm.MainMenuStrip => _menuStrip;
 
 		private MainForm() {
+			this.Font = new Font("Microsoft YaHei", 9);
 			Dictionary<Keys, Action> dictionary = new Dictionary<Keys, Action>();
 			dictionary.Add((Keys)131150, OnFileNew);
 			dictionary.Add((Keys)131151, OnFileOpen);
