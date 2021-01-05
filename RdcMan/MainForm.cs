@@ -503,12 +503,12 @@ namespace RdcMan
 
 		protected void CreateMainMenu()
 		{
-			ToolStripMenuItem toolStripMenuItem = _menuStrip.Add("文件", MenuNames.File);
-			toolStripMenuItem.DropDownItems.Add(new DelegateMenuItem("新建", MenuNames.FileNew, "Ctrl+N", delegate
+			ToolStripMenuItem toolStripMenuItem = _menuStrip.Add("文件(&F)", MenuNames.File);
+			toolStripMenuItem.DropDownItems.Add(new DelegateMenuItem("新建(&N)", MenuNames.FileNew, "Ctrl+N", delegate
 			{
 				OnFileNew();
 			}));
-			toolStripMenuItem.DropDownItems.Add(new DelegateMenuItem("打开", MenuNames.FileOpen, "Ctrl+O", delegate
+			toolStripMenuItem.DropDownItems.Add(new DelegateMenuItem("打开(&O)", MenuNames.FileOpen, "Ctrl+O", delegate
 			{
 				OnFileOpen();
 			}));
@@ -523,7 +523,7 @@ namespace RdcMan
 				OnFileSaveAs();
 			});
 			toolStripMenuItem.DropDownItems.Add(_fileSaveAsMenuItem);
-			toolStripMenuItem.DropDownItems.Add(new DelegateMenuItem("全部保存", MenuNames.FileSaveAll, delegate
+			toolStripMenuItem.DropDownItems.Add(new DelegateMenuItem("全部保存(&L)", MenuNames.FileSaveAll, delegate
 			{
 				RdgFile.SaveAll();
 			}));
@@ -534,60 +534,60 @@ namespace RdcMan
 			});
 			toolStripMenuItem.DropDownItems.Add(_fileCloseMenuItem);
 			toolStripMenuItem.DropDownItems.Add("-");
-			toolStripMenuItem.DropDownItems.Add(new DelegateMenuItem("退出", MenuNames.FileExit, "Alt+F4", delegate
+			toolStripMenuItem.DropDownItems.Add(new DelegateMenuItem("退出(&X)", MenuNames.FileExit, "Alt+F4", delegate
 			{
 				Program.TheForm.Close();
 			}));
-			ToolStripMenuItem toolStripMenuItem2 = _menuStrip.Add("编辑", MenuNames.Edit);
-			toolStripMenuItem2.DropDownItems.Add(new FileRequiredMenuItem("添加服务器", MenuNames.EditAddServer, "Ctrl+A", delegate
+			ToolStripMenuItem toolStripMenuItem2 = _menuStrip.Add("编辑(&E)", MenuNames.Edit);
+			toolStripMenuItem2.DropDownItems.Add(new FileRequiredMenuItem("添加服务器(&A)", MenuNames.EditAddServer, "Ctrl+A", delegate
 			{
 				AddNodeDialogHelper.AddServersDialog();
 			}));
-			toolStripMenuItem2.DropDownItems.Add(new FileRequiredMenuItem("导入服务器", MenuNames.EditImportServers, delegate
+			toolStripMenuItem2.DropDownItems.Add(new FileRequiredMenuItem("导入服务器(&I)", MenuNames.EditImportServers, delegate
 			{
 				AddNodeDialogHelper.ImportServersDialog();
 			}));
-			toolStripMenuItem2.DropDownItems.Add(new FileRequiredMenuItem("添加群组", MenuNames.EditAddGroup, "Ctrl+G", delegate
+			toolStripMenuItem2.DropDownItems.Add(new FileRequiredMenuItem("添加群组(&G)", MenuNames.EditAddGroup, "Ctrl+G", delegate
 			{
 				AddNodeDialogHelper.AddGroupDialog();
 			}));
-			toolStripMenuItem2.DropDownItems.Add(new FileRequiredMenuItem("添加智能群组", MenuNames.EditAddSmartGroup, delegate
+			toolStripMenuItem2.DropDownItems.Add(new FileRequiredMenuItem("添加智能群组(&M)", MenuNames.EditAddSmartGroup, delegate
 			{
 				AddNodeDialogHelper.AddSmartGroupDialog();
 			}));
 			toolStripMenuItem2.DropDownItems.Add("-");
-			toolStripMenuItem2.DropDownItems.Add(new SelectedNodeMenuItem("删除服务器/群组", MenuNames.EditRemove, "Delete", delegate(RdcTreeNode node)
+			toolStripMenuItem2.DropDownItems.Add(new SelectedNodeMenuItem("删除服务器/群组(&V)", MenuNames.EditRemove, "Delete", delegate(RdcTreeNode node)
 			{
 				ServerTree.Instance.ConfirmRemove(node, askUser: true);
 			}));
 			toolStripMenuItem2.DropDownItems.Add("-");
-			toolStripMenuItem2.DropDownItems.Add(new FileRequiredMenuItem("查找", MenuNames.EditFind, "Ctrl+F", delegate
+			toolStripMenuItem2.DropDownItems.Add(new FileRequiredMenuItem("查找(&F)", MenuNames.EditFind, "Ctrl+F", delegate
 			{
 				MenuHelper.FindServers();
 			}));
 			toolStripMenuItem2.DropDownItems.Add("-");
-			toolStripMenuItem2.DropDownItems.Add(new SelectedNodeMenuItem<ServerBase>("添加到收藏夹", MenuNames.EditAddToFavorites, "Ctrl+D", delegate
+			toolStripMenuItem2.DropDownItems.Add(new SelectedNodeMenuItem<ServerBase>("添加到收藏夹(&D)", MenuNames.EditAddToFavorites, "Ctrl+D", delegate
 			{
 				MenuHelper.AddFavorite(ServerTree.Instance.SelectedNode as RdcTreeNode);
 			}));
 			toolStripMenuItem2.DropDownItems.Add("-");
-			_editPropertiesMenuItem = new SelectedNodeMenuItem("属性", MenuNames.EditProperties, "Alt+Enter", delegate(RdcTreeNode node)
+			_editPropertiesMenuItem = new SelectedNodeMenuItem("属性(&R)", MenuNames.EditProperties, "Alt+Enter", delegate(RdcTreeNode node)
 			{
 				node.DoPropertiesDialog();
 			});
 			toolStripMenuItem2.DropDownItems.Add(_editPropertiesMenuItem);
-			ToolStripMenuItem toolStripMenuItem3 = _menuStrip.Add("会话", MenuNames.Session);
-			_sessionConnectMenuItem = new SelectedNodeMenuItem("连接", MenuNames.SessionConnect, "Enter", delegate(RdcTreeNode node)
+			ToolStripMenuItem toolStripMenuItem3 = _menuStrip.Add("会话(&S)", MenuNames.Session);
+			_sessionConnectMenuItem = new SelectedNodeMenuItem("连接(&C)", MenuNames.SessionConnect, "Enter", delegate(RdcTreeNode node)
 			{
 				node.Connect();
 			});
 			toolStripMenuItem3.DropDownItems.Add(_sessionConnectMenuItem);
-			_sessionConnectAsMenuItem = new SelectedNodeMenuItem("连接为", MenuNames.SessionConnectAs, "Shift+Enter", delegate(RdcTreeNode node)
+			_sessionConnectAsMenuItem = new SelectedNodeMenuItem("连接为(&A)", MenuNames.SessionConnectAs, "Shift+Enter", delegate(RdcTreeNode node)
 			{
 				node.DoConnectAs();
 			});
 			toolStripMenuItem3.DropDownItems.Add(_sessionConnectAsMenuItem);
-			_sessionReconnectMenuItem = new SelectedNodeMenuItem("重新连接", MenuNames.SessionReconnect, delegate(RdcTreeNode node)
+			_sessionReconnectMenuItem = new SelectedNodeMenuItem("重新连接(&E)", MenuNames.SessionReconnect, delegate(RdcTreeNode node)
 			{
 				node.Reconnect();
 			});
@@ -602,7 +602,7 @@ namespace RdcMan
 				toolStripMenuItem3.DropDownItems.Add(_sessionRemoteActionsMenuItem);
 			}
 			toolStripMenuItem3.DropDownItems.Add("-");
-			_sessionDisconnectMenuItem = new SelectedNodeMenuItem("断开连接", MenuNames.SessionDisconnect, delegate(RdcTreeNode node)
+			_sessionDisconnectMenuItem = new SelectedNodeMenuItem("断开连接(&D)", MenuNames.SessionDisconnect, delegate(RdcTreeNode node)
 			{
 				node.Disconnect();
 			});
@@ -613,35 +613,35 @@ namespace RdcMan
 				node.LogOff();
 			});
 			toolStripMenuItem3.DropDownItems.Add(_sessionLogOffMenuItem);
-			_sessionListSessionsMenuItem = new SelectedNodeMenuItem<ServerBase>("会话列表", MenuNames.SessionListSessions, delegate(ServerBase server)
+			_sessionListSessionsMenuItem = new SelectedNodeMenuItem<ServerBase>("会话列表(&L)", MenuNames.SessionListSessions, delegate(ServerBase server)
 			{
 				Program.ShowForm(new ListSessionsForm(server));
 			});
 			toolStripMenuItem3.DropDownItems.Add(_sessionListSessionsMenuItem);
 			toolStripMenuItem3.DropDownItems.Add("-");
-			_sessionFullScreenMenuItem = new SelectedNodeMenuItem<ServerBase>("全屏", MenuNames.SessionFullScreen, delegate(ServerBase server)
+			_sessionFullScreenMenuItem = new SelectedNodeMenuItem<ServerBase>("全屏(&F)", MenuNames.SessionFullScreen, delegate(ServerBase server)
 			{
 				server.GoFullScreen();
 			});
 			toolStripMenuItem3.DropDownItems.Add(_sessionFullScreenMenuItem);
-			_sessionUndockMenuItem = new SelectedNodeMenuItem<ServerBase>("取消停靠", MenuNames.SessionUndock, delegate(ServerBase server)
+			_sessionUndockMenuItem = new SelectedNodeMenuItem<ServerBase>("取消停靠(&U)", MenuNames.SessionUndock, delegate(ServerBase server)
 			{
 				server.Undock();
 			});
 			toolStripMenuItem3.DropDownItems.Add(_sessionUndockMenuItem);
-			_sessionUndockAndConnectMenuItem = new SelectedNodeMenuItem<ServerBase>("取消停靠并连接", MenuNames.SessionUndockAndConnect, delegate(ServerBase server)
+			_sessionUndockAndConnectMenuItem = new SelectedNodeMenuItem<ServerBase>("取消停靠并连接(&K)", MenuNames.SessionUndockAndConnect, delegate(ServerBase server)
 			{
 				server.Undock();
 				server.Connect();
 			});
 			toolStripMenuItem3.DropDownItems.Add(_sessionUndockAndConnectMenuItem);
-			_sessionDockMenuItem = new SelectedNodeMenuItem<ServerBase>("停靠", MenuNames.SessionDock, delegate(ServerBase server)
+			_sessionDockMenuItem = new SelectedNodeMenuItem<ServerBase>("停靠(&D)", MenuNames.SessionDock, delegate(ServerBase server)
 			{
 				server.Dock();
 			});
 			toolStripMenuItem3.DropDownItems.Add(_sessionDockMenuItem);
 			toolStripMenuItem3.DropDownItems.Add("-");
-			toolStripMenuItem3.DropDownItems.Add(new DelegateMenuItem("连接到...", MenuNames.SessionConnectTo, "Ctrl+Q", delegate
+			toolStripMenuItem3.DropDownItems.Add(new DelegateMenuItem("连接到(&Q)...", MenuNames.SessionConnectTo, "Ctrl+Q", delegate
 			{
 				MenuHelper.ConnectTo();
 			}));
@@ -651,8 +651,8 @@ namespace RdcMan
 				server.ScreenCapture();
 			});
 			toolStripMenuItem3.DropDownItems.Add(_sessionScreenCaptureMenuItem);
-			ToolStripMenuItem toolStripMenuItem4 = _menuStrip.Add("视图", MenuNames.View);
-			ToolStripMenuItem toolStripMenuItem5 = toolStripMenuItem4.DropDownItems.Add("排序", MenuNames.ViewSortOrder);
+			ToolStripMenuItem toolStripMenuItem4 = _menuStrip.Add("视图(&V)", MenuNames.View);
+			ToolStripMenuItem toolStripMenuItem5 = toolStripMenuItem4.DropDownItems.Add("排序(&S)", MenuNames.ViewSortOrder);
 			ToolStripMenuItem toolStripMenuItem6 = toolStripMenuItem5.DropDownItems.Add("群组", MenuNames.None);
 			toolStripMenuItem6.DropDownItems.Add(new SortGroupsCheckedMenuItem("名称", SortOrder.ByName));
 			toolStripMenuItem6.DropDownItems.Add(new SortGroupsCheckedMenuItem("无排序", SortOrder.None));
@@ -677,12 +677,12 @@ namespace RdcMan
 				}
 			}
 			toolStripMenuItem4.DropDownItems.Add("-");
-			toolStripMenuItem4.DropDownItems.Add(new DelegateCheckedMenuItem("锁定窗口大小", MenuNames.ViewLockWindowSize, () => Program.Preferences.LockWindowSize, delegate(bool isChecked)
+			toolStripMenuItem4.DropDownItems.Add(new DelegateCheckedMenuItem("锁定窗口大小(&L)", MenuNames.ViewLockWindowSize, () => Program.Preferences.LockWindowSize, delegate(bool isChecked)
 			{
 				Program.Preferences.LockWindowSize = isChecked;
 				LockWindowSize();
 			}));
-			ToolStripMenuItem toolStripMenuItem11 = new ToolStripMenuItem("分辨率");
+			ToolStripMenuItem toolStripMenuItem11 = new ToolStripMenuItem("分辨率(&C)");
 			Size[] stockSizes = SizeHelper.StockSizes;
 			foreach (Size size in stockSizes)
 			{
@@ -697,18 +697,18 @@ namespace RdcMan
 			toolStripMenuItem4.DropDownItems.Add(toolStripMenuItem11);
 			RemoteDesktopsMenuItem value2 = new RemoteDesktopsMenuItem();
 			_menuStrip.Items.Add(value2);
-			ToolStripMenuItem toolStripMenuItem12 = _menuStrip.Add("工具", MenuNames.Tools);
-			toolStripMenuItem12.DropDownItems.Add(new DelegateMenuItem("选项", MenuNames.ToolsOptions, delegate
+			ToolStripMenuItem toolStripMenuItem12 = _menuStrip.Add("工具(&T)", MenuNames.Tools);
+			toolStripMenuItem12.DropDownItems.Add(new DelegateMenuItem("选项(&O)", MenuNames.ToolsOptions, delegate
 			{
 				MenuHelper.ShowGlobalOptionsDialog();
 			}));
-			ToolStripMenuItem toolStripMenuItem13 = _menuStrip.Add("&Help", MenuNames.Help);
-			toolStripMenuItem13.DropDownItems.Add(new DelegateMenuItem("&Usage", MenuNames.HelpUsage, delegate
+			ToolStripMenuItem toolStripMenuItem13 = _menuStrip.Add("帮助(&H)", MenuNames.Help);
+			toolStripMenuItem13.DropDownItems.Add(new DelegateMenuItem("教程(&U)", MenuNames.HelpUsage, delegate
 			{
 				Program.Usage();
 			}));
 			toolStripMenuItem13.DropDownItems.Add("-");
-			toolStripMenuItem13.DropDownItems.Add(new DelegateMenuItem("&About...", MenuNames.HelpAbout, delegate
+			toolStripMenuItem13.DropDownItems.Add(new DelegateMenuItem("关于(&A)...", MenuNames.HelpAbout, delegate
 			{
 				OnHelpAbout();
 			}));
